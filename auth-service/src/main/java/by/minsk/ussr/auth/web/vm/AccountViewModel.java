@@ -4,10 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import javax.validation.constraints.Email;
+
 @Data
 @NoArgsConstructor
 public class AccountViewModel {
-    @NonNull private String email;
-    @NonNull private String login;
-    @NonNull private String password;
+    @NonNull @Email
+    private String email;
+    @NonNull
+    private String login;
+    @NonNull
+    private String password;
 }
