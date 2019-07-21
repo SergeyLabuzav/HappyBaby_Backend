@@ -1,0 +1,6 @@
+allprojects {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+        springCloudVersion = 'Greenwich.SR1'
+    }
+}

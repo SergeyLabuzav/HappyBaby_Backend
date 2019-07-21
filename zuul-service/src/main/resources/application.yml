@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: zuul-service
+
+server:
+  port: 8100
+
+eureka:
+  client:
+    enabled: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    auth-service:
+      path: /auth/**
