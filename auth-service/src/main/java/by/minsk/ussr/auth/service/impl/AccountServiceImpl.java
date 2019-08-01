@@ -3,11 +3,12 @@ package by.minsk.ussr.auth.service.impl;
 import by.minsk.ussr.auth.model.User;
 import by.minsk.ussr.auth.repository.UserDetailRepository;
 import by.minsk.ussr.auth.service.AccountService;
+import java.util.Optional;
+import javax.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Optional;
-
+@Slf4j
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
@@ -29,7 +30,24 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User save(User user) {
-        return userDetailRepository.save(user);
+    public Optional<User> findByActivationKey(String activationKey) {
+        return userDetailRepository.findOneByActivationKey(activationKey);
+    }
+
+    @Override
+    public void activateRegistration(User user) {
+        log.debug("Activate user: {}", user);
+        user.setCredentialsNonExpired(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setEnabled(true);
+
+        user.setActivationKey(null);
+    }
+
+    @Override
+    public void save(User user) {
+        log.debug("Save user: {}", user);
+        userDetailRepository.save(user);
     }
 }

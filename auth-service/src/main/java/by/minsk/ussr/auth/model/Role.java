@@ -1,8 +1,7 @@
 package by.minsk.ussr.auth.model;
 
-import lombok.Data;
-
-import javax.persistence.Column;
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,19 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.List;
+import lombok.Data;
 
-@Entity
-@Table(name = "role")
 @Data
+@Entity
 public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "name")
+
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)

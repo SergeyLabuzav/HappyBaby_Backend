@@ -7,6 +7,9 @@ import java.util.Optional;
 public interface AccountService {
     Optional<User> findByUsername(String username);
     Optional<User> findOneByEmail(String email);
+    Optional<User> findByActivationKey(String activationKey);
 
-    User save(User user);
+    void save(User user);
+
+    void activateRegistration(User user);
 }

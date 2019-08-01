@@ -1,22 +1,19 @@
 package by.minsk.ussr.auth.model;
 
-import lombok.Data;
-
-import javax.persistence.Column;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import lombok.Data;
 
-@Entity
-@Table(name = "permission")
 @Data
+@Entity
 public class Permission implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "name")
+
     private String name;
 }
+
