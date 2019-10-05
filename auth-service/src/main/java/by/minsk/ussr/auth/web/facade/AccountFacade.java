@@ -7,6 +7,7 @@ import by.minsk.ussr.auth.service.AccountService;
 import by.minsk.ussr.auth.service.MailService;
 import by.minsk.ussr.auth.service.RoleService;
 import by.minsk.ussr.auth.service.util.RandomUtil;
+import by.minsk.ussr.auth.api.dto.UserProfileDto;
 import by.minsk.ussr.auth.web.error.EmailAlreadyUsedException;
 import by.minsk.ussr.auth.web.error.LoginAlreadyUsedException;
 import by.minsk.ussr.auth.web.mapper.AccountMapper;
@@ -43,11 +44,11 @@ public class AccountFacade {
                     throw new EmailAlreadyUsedException();
                 });
 
-        mailService.sendCreationEmail(user);
-
         user.setActivationKey(RandomUtil.generateActivationKey());
         Role userRole = roleService.getRoleByName(ERole.ROLE_USER.name());
         user.setRoles(Collections.singletonList(userRole));
+
+        mailService.sendCreationEmail(user);
 
         accountService.save(user);
     }
@@ -57,5 +58,14 @@ public class AccountFacade {
                 .orElseThrow(() -> new IllegalArgumentException("No user was found for this activation key"));
 
         accountService.activateRegistration(user);
+    }
+
+    public UserProfileDto currentUserProfile(String userName) {
+        User user = accountService.findByUsername(userName).orElseThrow(IllegalArgumentException::new);
+        UserProfileDto dto = new UserProfileDto();
+        dto.setId(user.getId());
+        dto.setUserName(user.getUsername());
+        dto.setEmail(user.getEmail());
+        return dto;
     }
 }

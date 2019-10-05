@@ -1,8 +1,10 @@
 package by.minsk.ussr.auth.web.rest;
 
+import by.minsk.ussr.auth.api.dto.UserProfileDto;
 import by.minsk.ussr.auth.web.facade.AccountFacade;
 import by.minsk.ussr.auth.web.vm.AccountViewModel;
 import io.micrometer.core.annotation.Timed;
+import java.security.Principal;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +35,10 @@ public class AccountRestController {
     @Timed
     public void activateAccount(@RequestParam(value = "key") String key) {
         accountFacade.activateRegistration(key);
+    }
+
+    @GetMapping("/me")
+    public UserProfileDto get(final Principal principal) {
+        return accountFacade.currentUserProfile(principal.getName());
     }
 }
