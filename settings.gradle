@@ -4,4 +4,4 @@ include 'eureka-service'
 include 'zuul-service'
 include 'auth-service'
 include 'auth-service-api'
-
+include 'baby-service'

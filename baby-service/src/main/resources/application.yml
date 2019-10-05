@@ -1,0 +1,41 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: baby-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/baby?createDatabaseIfNotExist=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: #username
+    password: #password
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  liquibase:
+    change-log: classpath:/db/changelog/master.xml
+
+security:
+  oauth2:
+    client:
+      client-id: mobile
+      client-secret: pin
+    resource:
+      user-info-uri: http://localhost:8100/auth/oauth/account/me
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+
+eureka:
+  client:
+    enabled: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}
