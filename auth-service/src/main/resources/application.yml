@@ -45,3 +45,15 @@ eureka:
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}
+
+ribbon:
+  ReadTimeout: 500000
+  ConnectTimeout: 500000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500000

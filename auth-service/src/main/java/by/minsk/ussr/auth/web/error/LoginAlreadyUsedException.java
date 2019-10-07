@@ -3,6 +3,10 @@ package by.minsk.ussr.auth.web.error;
 public class LoginAlreadyUsedException extends BadRequestAlertException {
 
     public LoginAlreadyUsedException() {
-        super(ErrorConstants.LOGIN_ALREADY_USED_TYPE, "Login name already used!", "userManagement", "userexists");
+        this("");
+    }
+
+    public LoginAlreadyUsedException(String path) {
+        super(path, "login-already-used", "Login name already used!", 400);
     }
 }

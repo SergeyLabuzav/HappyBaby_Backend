@@ -1,17 +1,18 @@
 package by.minsk.ussr.auth.web.error;
 
-import java.net.URI;
+import lombok.Getter;
 
-public class BadRequestAlertException extends RuntimeException {
-    private final String defaultMessage;
-    private final String entityName;
-    private final String errorKey;
-    private final URI type;
+@Getter
+public abstract class BadRequestAlertException extends RuntimeException {
+    private final String error;
+    private final String message;
+    private final Integer status;
+    private final String path;
 
-    public BadRequestAlertException(URI type, String defaultMessage, String entityName, String errorKey) {
-        this.defaultMessage = defaultMessage;
-        this.entityName = entityName;
-        this.errorKey = errorKey;
-        this.type = type;
+    BadRequestAlertException(String path, String error, String message, Integer status) {
+        this.error = error;
+        this.message = message;
+        this.status = status;
+        this.path = path;
     }
 }

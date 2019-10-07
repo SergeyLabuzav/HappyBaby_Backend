@@ -18,3 +18,7 @@ zuul:
       path: /auth/**
     baby-service:
       path: /baby/**
+
+ribbon:
+  ReadTimeout: 5000000
+  ConnectTimeout: 5000000
