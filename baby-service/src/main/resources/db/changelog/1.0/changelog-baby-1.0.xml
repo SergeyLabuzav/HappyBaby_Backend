@@ -14,4 +14,21 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="2019-10-13-12-20-00" author="SergeyLabuzov">
+        <createTable tableName="pregnancy">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="account_pkey" nullable="false"/>
+            </column>
+            <column name="user_profile_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="period" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
