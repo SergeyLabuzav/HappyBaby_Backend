@@ -18,7 +18,7 @@
     <changeSet id="2019-10-13-12-20-00" author="SergeyLabuzov">
         <createTable tableName="pregnancy">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="account_pkey" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="pregnancy_pkey" nullable="false"/>
             </column>
             <column name="user_profile_id" type="bigint">
                 <constraints nullable="false" unique="true"/>
