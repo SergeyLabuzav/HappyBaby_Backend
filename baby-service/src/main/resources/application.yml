@@ -5,13 +5,13 @@ spring:
   application:
     name: baby-service
   datasource:
-    url: jdbc:mysql://localhost:3306/baby?createDatabaseIfNotExist=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:postgresql://localhost/baby
     username: #username
     password: #password
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    database: MYSQL
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    database: POSTGRESQL
     properties:
       hibernate:
         show_sql: true
