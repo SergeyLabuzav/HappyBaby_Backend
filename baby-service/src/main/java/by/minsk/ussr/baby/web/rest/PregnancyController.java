@@ -1,9 +1,11 @@
 package by.minsk.ussr.baby.web.rest;
 
-import by.minsk.ussr.baby.model.Pregnancy;
-import by.minsk.ussr.baby.service.PregnancyService;
+import by.minsk.ussr.baby.web.dto.PregnancyDto;
+import by.minsk.ussr.baby.web.facade.PregnancyFacade;
 import java.util.Collection;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,19 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("pregnancy")
 public class PregnancyController {
 
-    private final PregnancyService pregnancyService;
+    private final PregnancyFacade pregnancyFacade;
 
-    public PregnancyController(PregnancyService pregnancyService) {
-        this.pregnancyService = pregnancyService;
+    public PregnancyController(PregnancyFacade pregnancyFacade) {
+        this.pregnancyFacade = pregnancyFacade;
     }
 
     @GetMapping
-    public Pregnancy activePregnancy() {
-        return pregnancyService.findActive();
+    public PregnancyDto activePregnancy() {
+        return pregnancyFacade.findActive();
+    }
+
+    @PostMapping
+    public PregnancyDto savePregnancy(@RequestBody PregnancyDto dto) {
+        return pregnancyFacade.createPregnancy(dto);
     }
 
     @GetMapping("/all")
-    public Collection<Pregnancy> allPregnancies() {
-        return pregnancyService.findAll();
+    public Collection<PregnancyDto> allPregnancies() {
+        return pregnancyFacade.allPregnancies();
     }
 }

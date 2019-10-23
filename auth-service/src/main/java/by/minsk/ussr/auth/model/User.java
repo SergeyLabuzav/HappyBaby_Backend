@@ -1,7 +1,7 @@
 package by.minsk.ussr.auth.model;
 
-import lombok.Data;
-
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,16 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "oauth_user")
 public class User implements Serializable {
     public User() {
     }
 
     public User(User user) {
+        this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();

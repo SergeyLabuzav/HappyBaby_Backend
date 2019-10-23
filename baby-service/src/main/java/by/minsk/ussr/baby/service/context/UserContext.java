@@ -1,6 +1,7 @@
 package by.minsk.ussr.baby.service.context;
 
 import by.minsk.ussr.baby.error.NoUserLoggedInException;
+import by.minsk.ussr.baby.web.dto.UserInfo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,6 @@ public class UserContext {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new NoUserLoggedInException();
         }
-        return (Integer) authentication.getUserAuthentication().getPrincipal();
+        return ((UserInfo) authentication.getUserAuthentication().getPrincipal()).getId();
     }
 }

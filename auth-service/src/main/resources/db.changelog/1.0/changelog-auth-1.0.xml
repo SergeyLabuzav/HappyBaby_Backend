@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="2019-10-15-12-00-00" author="SergeyLabuzov">
+        <createTable tableName="oauth_client_details">
+            <column name="client_id" type="varchar(255)">
+                <constraints primaryKey="true" primaryKeyName="oauth_client_details_pkey" nullable="false"/>
+            </column>
+            <column name="client_secret" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="web_server_redirect_uri" type="varchar(2048)"/>
+            <column name="scope" type="varchar(255)"/>
+            <column name="access_token_validity" type="bigint"/>
+            <column name="refresh_token_validity" type="bigint"/>
+            <column name="resource_ids" type="varchar(1024)"/>
+            <column name="authorized_grant_types" type="varchar(1024)"/>
+            <column name="authorities" type="varchar(1024)"/>
+            <column name="additional_information" type="varchar(4096)"/>
+            <column name="autoapprove" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="permission">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="permission_pkey" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(512)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="role_pkey" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="oauth_user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="user_pkey" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(1024)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_non_expired" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credentials_non_expired" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_non_locked" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="varchar(1024)"/>
+        </createTable>
+
+        <createTable tableName="permission_role">
+            <column name="permission_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="permission_role_permission_fkey"
+                             referencedTableName="permission"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="permission_role_role_fkey"
+                             referencedTableName="role"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="role_user">
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="role_user_role_fkey"
+                             referencedTableName="role"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="role_user_user_fkey"
+                             referencedTableName="oauth_user"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="oauth_client_token">
+            <column name="authentication_id" type="varchar(256)">
+                <constraints primaryKey="true" primaryKeyName="oauth_client_token_pkey" nullable="false"/>
+            </column>
+            <column name="token_id" type="varchar(256)"/>
+            <column name="token" type="BYTEA"/>
+            <column name="user_name" type="varchar(256)"/>
+            <column name="client_id" type="varchar(256)"/>
+        </createTable>
+
+        <createTable tableName="oauth_access_token">
+            <column name="authentication_id" type="varchar(256)">
+                <constraints primaryKey="true" primaryKeyName="oauth_access_token_pkey" nullable="false"/>
+            </column>
+            <column name="token_id" type="varchar(256)"/>
+            <column name="token" type="BYTEA"/>
+            <column name="user_name" type="varchar(256)"/>
+            <column name="client_id" type="varchar(256)"/>
+            <column name="authentication" type="BYTEA"/>
+            <column name="refresh_token" type="varchar(256)"/>
+        </createTable>
+
+        <createTable tableName="oauth_refresh_token">
+            <column name="token_id" type="varchar(256)"/>
+            <column name="token" type="BYTEA"/>
+            <column name="authentication" type="BYTEA"/>
+        </createTable>
+
+        <createTable tableName="oauth_code">
+            <column name="code" type="varchar(256)"/>
+            <column name="authentication" type="BYTEA"/>
+        </createTable>
+
+        <createTable tableName="oauth_approvals">
+            <column name="user_id" type="varchar(256)"/>
+            <column name="client_id" type="varchar(256)"/>
+            <column name="scope" type="varchar(256)"/>
+            <column name="status" type="varchar(10)"/>
+            <column name="expires_at" type="TIMESTAMP"/>
+            <column name="last_modified_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <loadData file="db.changelog/1.0/data/oauth_client_details.csv" tableName="oauth_client_details"/>
+    </changeSet>
+</databaseChangeLog>

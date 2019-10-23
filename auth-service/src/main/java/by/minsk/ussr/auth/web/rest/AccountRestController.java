@@ -1,6 +1,6 @@
 package by.minsk.ussr.auth.web.rest;
 
-import by.minsk.ussr.auth.api.dto.UserProfileDto;
+import by.minsk.ussr.auth.web.dto.UserProfileDto;
 import by.minsk.ussr.auth.web.facade.AccountFacade;
 import by.minsk.ussr.auth.web.vm.AccountViewModel;
 import io.micrometer.core.annotation.Timed;
