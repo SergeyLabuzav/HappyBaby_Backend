@@ -16,6 +16,8 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  liquibase:
+    change-log: classpath:/db.changelog/master.xml
   messages:
     basename: i18n/messages
   mail:

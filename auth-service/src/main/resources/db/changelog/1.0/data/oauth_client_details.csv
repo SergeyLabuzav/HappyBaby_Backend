@@ -1,0 +1,2 @@
+client_id,client_secret,web_server_redirect_uri,scope,access_token_validity,refresh_token_validity,resource_ids,authorized_grant_types,authorities,additional_information,autoapprove
+web,{bcrypt}$2a$10$gPhlXZfms0EpNHX0.HHptOhoFD1AoxSr/yUIdTqA8vtjeP4zi0DDu,"","READ,WRITE",3600,10000,oauth2-resource,"authorization_code,password,refresh_token,implicit",,{},
