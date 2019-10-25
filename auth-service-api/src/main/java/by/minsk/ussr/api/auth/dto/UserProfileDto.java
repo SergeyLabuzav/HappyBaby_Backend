@@ -1,4 +1,4 @@
-package by.minsk.ussr.auth.api.dto;
+package by.minsk.ussr.api.auth.dto;
 
 import lombok.Data;
 

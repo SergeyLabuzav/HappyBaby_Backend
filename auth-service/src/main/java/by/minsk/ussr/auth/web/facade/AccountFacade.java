@@ -7,7 +7,7 @@ import by.minsk.ussr.auth.service.AccountService;
 import by.minsk.ussr.auth.service.MailService;
 import by.minsk.ussr.auth.service.RoleService;
 import by.minsk.ussr.auth.service.util.RandomUtil;
-import by.minsk.ussr.auth.api.dto.UserProfileDto;
+import by.minsk.ussr.api.auth.dto.UserProfileDto;
 import by.minsk.ussr.auth.web.error.EmailAlreadyUsedException;
 import by.minsk.ussr.auth.web.error.LoginAlreadyUsedException;
 import by.minsk.ussr.auth.web.mapper.AccountMapper;

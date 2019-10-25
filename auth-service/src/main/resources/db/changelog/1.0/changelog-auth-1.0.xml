@@ -137,7 +137,7 @@
             <column name="last_modified_at" type="TIMESTAMP"/>
         </createTable>
 
-        <loadData file="db.changelog/1.0/data/oauth_client_details.csv" tableName="oauth_client_details"/>
-        <loadData file="db.changelog/1.0/data/role.csv" tableName="role"/>
+        <loadData file="db/changelog/1.0/data/oauth_client_details.csv" tableName="oauth_client_details"/>
+        <loadData file="db/changelog/1.0/data/role.csv" tableName="role"/>
     </changeSet>
 </databaseChangeLog>
