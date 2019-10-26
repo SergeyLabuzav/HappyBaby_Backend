@@ -21,9 +21,9 @@
                 <constraints primaryKey="true" primaryKeyName="pregnancy_pkey" nullable="false"/>
             </column>
             <column name="user_profile_id" type="bigint">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
-            <column name="period" type="bigint">
+            <column name="pregnancy_day" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="is_active" type="boolean" defaultValueBoolean="false">

@@ -15,6 +15,7 @@ public class SecureResourceConfiguration extends ResourceServerConfigurerAdapter
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/oauth/account/create").permitAll()
                 .antMatchers(HttpMethod.GET, "/oauth/account/activate").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/oauth/token/revoke").permitAll()
                 .anyRequest().authenticated();
     }
 }

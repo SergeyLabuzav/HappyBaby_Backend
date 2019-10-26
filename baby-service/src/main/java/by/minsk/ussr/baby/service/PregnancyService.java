@@ -7,4 +7,6 @@ public interface PregnancyService {
     Pregnancy findActive();
 
     Collection<Pregnancy> findAll();
+
+    Pregnancy createNewPregnancy(int period);
 }

@@ -1,4 +1,4 @@
-package by.minsk.ussr.baby.error;
+package by.minsk.ussr.api.auth.error;
 
 /**
  * Exception indicates that no user is currently logged in.
