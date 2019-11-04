@@ -20,7 +20,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void revokeToken() {
-        OAuth2AccessToken accessToken = tokenStore.readAccessToken(userContext.getAccessToken());
+        OAuth2AccessToken accessToken = tokenStore.getAccessToken(userContext.getAuthentication());
         if (accessToken.getRefreshToken() != null) {
             tokenStore.removeRefreshToken(accessToken.getRefreshToken());
         }

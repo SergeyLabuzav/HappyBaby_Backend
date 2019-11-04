@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("oauth/token")
+@RequestMapping("access/token")
 public class TokenRestController {
     private final TokenService tokenService;
 

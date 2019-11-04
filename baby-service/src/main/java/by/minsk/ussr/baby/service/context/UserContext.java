@@ -1,6 +1,7 @@
 package by.minsk.ussr.baby.service.context;
 
 import by.minsk.ussr.api.auth.dto.UserProfileDto;
+import by.minsk.ussr.api.auth.error.NoUserLoggedInException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
